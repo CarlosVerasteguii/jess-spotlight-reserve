@@ -8,35 +8,49 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* JESS BOX Brand Colors - Monochrome with Gold */
+    --ink-black: 0 0% 5%;          /* #0D0D0D */
+    --porcelain-white: 0 0% 100%;  /* #FFFFFF */
+    --soft-graphite: 0 0% 17%;     /* #2B2B2B */
+    --warm-ivory: 0 0% 97%;        /* #F7F7F7 */
+    --brushed-gold: 43 69% 51%;    /* #C8A03A */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Semantic Design System */
+    --background: var(--porcelain-white);
+    --foreground: var(--soft-graphite);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --card: var(--porcelain-white);
+    --card-foreground: var(--soft-graphite);
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --popover: var(--porcelain-white);
+    --popover-foreground: var(--soft-graphite);
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --primary: var(--brushed-gold);
+    --primary-foreground: var(--ink-black);
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: var(--warm-ivory);
+    --secondary-foreground: var(--soft-graphite);
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: var(--warm-ivory);
+    --muted-foreground: 0 0% 45%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: var(--brushed-gold);
+    --accent-foreground: var(--ink-black);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: var(--porcelain-white);
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: var(--brushed-gold);
 
     --radius: 0.5rem;
+
+    /* JESS BOX Special Effects */
+    --glow-subtle: 0 4px 12px hsl(var(--brushed-gold) / 0.15);
+    --glow-prominent: 0 8px 24px hsl(var(--brushed-gold) / 0.25);
+    --backlight: 0 2px 8px hsl(0 0% 0% / 0.08);
+    --transition-smooth: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,33 +70,34 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark mode uses Ink Black as primary background */
+    --background: var(--ink-black);
+    --foreground: var(--porcelain-white);
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: var(--ink-black);
+    --card-foreground: var(--porcelain-white);
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: var(--ink-black);
+    --popover-foreground: var(--porcelain-white);
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: var(--brushed-gold);
+    --primary-foreground: var(--ink-black);
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: var(--soft-graphite);
+    --secondary-foreground: var(--porcelain-white);
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: var(--soft-graphite);
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: var(--brushed-gold);
+    --accent-foreground: var(--ink-black);
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: var(--porcelain-white);
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: var(--soft-graphite);
+    --input: var(--soft-graphite);
+    --ring: var(--brushed-gold);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +115,46 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: 0.02em;
+    font-weight: 600;
+  }
+
+  .jess-glow {
+    box-shadow: var(--glow-subtle);
+  }
+
+  .jess-glow-prominent {
+    box-shadow: var(--glow-prominent);
+  }
+
+  .jess-backlight {
+    box-shadow: var(--backlight);
+  }
+
+  .jess-transition {
+    transition: var(--transition-smooth);
+  }
+}
+
+@layer components {
+  .jess-hero-title {
+    @apply text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight;
+  }
+
+  .jess-section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .jess-card {
+    @apply bg-card text-card-foreground rounded-lg border jess-backlight jess-transition;
+  }
+
+  .jess-card:hover {
+    @apply jess-glow;
   }
 }

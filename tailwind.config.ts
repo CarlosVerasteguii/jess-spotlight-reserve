@@ -19,6 +19,14 @@ export default {
 		},
 		extend: {
 			colors: {
+				// JESS BOX Brand Colors
+				'ink-black': 'hsl(var(--ink-black))',
+				'porcelain-white': 'hsl(var(--porcelain-white))',
+				'soft-graphite': 'hsl(var(--soft-graphite))',
+				'warm-ivory': 'hsl(var(--warm-ivory))',
+				'brushed-gold': 'hsl(var(--brushed-gold))',
+				
+				// Semantic Design System
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
