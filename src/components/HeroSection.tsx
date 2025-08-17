@@ -1,0 +1,84 @@
+import { Button } from "@/components/ui/button";
+import { Calendar, Play } from "lucide-react";
+import { Link } from "react-router-dom";
+import heroImage from "@/assets/hero-image.jpg";
+
+export const HeroSection = () => {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={heroImage} 
+          alt="JESS BOX Studio" 
+          className="w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-black/70 via-ink-black/50 to-ink-black/80" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto">
+          {/* Main Title */}
+          <h1 className="jess-hero-title text-porcelain-white mb-6">
+            JESS BOX
+          </h1>
+          
+          {/* Subtitle */}
+          <p className="text-xl md:text-2xl lg:text-3xl text-porcelain-white/90 font-light mb-4 tracking-wide">
+            Tu momento para brillar
+          </p>
+          
+          {/* Description */}
+          <p className="text-lg md:text-xl text-porcelain-white/80 max-w-2xl mx-auto mb-12 leading-relaxed">
+            Reserva tu slot de 15-20 minutos en nuestro livestream semanal. 
+            Presenta tus productos en vivo ante nuestra audiencia exclusiva.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button variant="hero" size="xl" asChild>
+              <Link to="/agenda">
+                <Calendar className="w-5 h-5" />
+                Reservar mi slot
+              </Link>
+            </Button>
+            
+            <Button variant="elegant" size="xl" asChild>
+              <Link to="/como-funciona">
+                <Play className="w-5 h-5" />
+                Ver cómo funciona
+              </Link>
+            </Button>
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="mt-16 pt-12 border-t border-porcelain-white/20">
+            <p className="text-sm text-porcelain-white/60 uppercase tracking-widest mb-6">
+              Únete a más de 100 emprendedores
+            </p>
+            <div className="flex justify-center items-center space-x-8 text-porcelain-white/40">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-brushed-gold">15min</div>
+                <div className="text-xs uppercase tracking-wide">Tu tiempo</div>
+              </div>
+              <div className="w-px h-12 bg-porcelain-white/20"></div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-brushed-gold">En vivo</div>
+                <div className="text-xs uppercase tracking-wide">Streaming</div>
+              </div>
+              <div className="w-px h-12 bg-porcelain-white/20"></div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-brushed-gold">Semanal</div>
+                <div className="text-xs uppercase tracking-wide">Frecuencia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-brushed-gold jess-glow-prominent"></div>
+    </section>
+  );
+};
