@@ -11,9 +11,15 @@ export const HeroSection = () => {
         <img 
           src={heroImage} 
           alt="JESS BOX Studio" 
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-black/70 via-ink-black/50 to-ink-black/80" />
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.55) 100%)',
+            backdropFilter: 'blur(1px)'
+          }}
+        />
       </div>
 
       {/* Content */}
@@ -31,8 +37,8 @@ export const HeroSection = () => {
           
           {/* Description */}
           <p className="text-lg md:text-xl text-porcelain-white/80 max-w-2xl mx-auto mb-12 leading-relaxed">
-            Reserva tu slot de 15-20 minutos en nuestro livestream semanal. 
-            Presenta tus productos en vivo ante nuestra audiencia exclusiva.
+            Reserva un slot de 15–20 min en nuestro livestream semanal. 
+            Presenta tus productos en vivo y llega a más clientes.
           </p>
 
           {/* CTA Buttons */}

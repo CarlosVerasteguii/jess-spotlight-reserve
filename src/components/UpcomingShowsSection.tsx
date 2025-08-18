@@ -40,20 +40,26 @@ const getStatusBadge = (status: string, availableSlots: number) => {
   switch (status) {
     case "available":
       return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-brushed-gold/10 text-brushed-gold border border-brushed-gold/20">
+        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-600 text-white">
           Disponible
         </span>
       );
     case "few-left":
       return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-orange-50 text-orange-600 border border-orange-200">
+        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-few-left">
           Pocas plazas
         </span>
       );
     case "full":
       return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-50 text-red-600 border border-red-200">
+        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-500 text-white">
           Completo
+        </span>
+      );
+    case "waiting":
+      return (
+        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-500 text-white">
+          Lista de espera
         </span>
       );
     default:
@@ -90,7 +96,7 @@ export const UpcomingShowsSection = () => {
           {upcomingShows.map((show) => (
             <div
               key={show.id}
-              className="bg-soft-graphite rounded-lg p-6 jess-backlight hover:jess-glow jess-transition"
+              className="jess-shelf-card p-6"
             >
               {/* Status Badge */}
               <div className="flex justify-between items-start mb-4">
@@ -116,11 +122,17 @@ export const UpcomingShowsSection = () => {
                 </div>
                 <div className="flex items-center text-porcelain-white/80">
                   <Clock className="w-4 h-4 mr-3 text-brushed-gold" />
-                  <span className="text-sm">{show.time} - {show.duration}</span>
+                  <span className="text-sm">{show.time} – {show.duration}</span>
                 </div>
-                <div className="flex items-center text-porcelain-white/80">
-                  <Users className="w-4 h-4 mr-3 text-brushed-gold" />
-                  <span className="text-sm">Slots de 15-20 minutos</span>
+                <div className="space-y-1">
+                  <div className="flex items-center text-porcelain-white/80">
+                    <Users className="w-4 h-4 mr-3 text-brushed-gold" />
+                    <span className="text-sm">Duración del slot: 15–20 min · Buffer: 2 min</span>
+                  </div>
+                  <div className="flex items-center text-porcelain-white/80">
+                    <div className="w-4 h-4 mr-3"></div>
+                    <span className="text-sm">Capacidad por slot: 1 vendedor</span>
+                  </div>
                 </div>
               </div>
 
@@ -136,7 +148,7 @@ export const UpcomingShowsSection = () => {
                   <span>Lista de espera</span>
                 ) : (
                   <Link to={`/show/${show.id}`}>
-                    Ver disponibilidad
+                    Seleccionar horario
                   </Link>
                 )}
               </Button>
@@ -148,7 +160,7 @@ export const UpcomingShowsSection = () => {
         <div className="text-center">
           <Button variant="elegant" size="lg" asChild>
             <Link to="/agenda">
-              Ver todos los shows
+              Ver toda la agenda
             </Link>
           </Button>
         </div>

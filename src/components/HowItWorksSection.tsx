@@ -3,20 +3,20 @@ import { Calendar, Camera, Trophy } from "lucide-react";
 const steps = [
   {
     icon: Calendar,
-    title: "Reserva tu slot",
-    description: "Elige fecha y hora disponible. Cada slot dura 15-20 minutos para tu presentación.",
+    title: "Elige tu horario",
+    description: "Consulta la agenda y selecciona un slot disponible.",
     step: "01"
   },
   {
     icon: Camera,
     title: "Preséntate en vivo",
-    description: "Llega al estudio y muestra tus productos ante nuestra audiencia en livestream.",
+    description: "Llega al local y muestra tus productos durante el live.",
     step: "02"
   },
   {
     icon: Trophy,
-    title: "Conecta con clientes",
-    description: "Aprovecha la exposición en vivo para generar ventas y hacer crecer tu marca.",
+    title: "Conecta y vende",
+    description: "Responde preguntas y genera ventas en tiempo real.",
     step: "03"
   }
 ];
