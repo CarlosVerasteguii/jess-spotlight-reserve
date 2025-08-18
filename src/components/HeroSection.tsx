@@ -36,15 +36,15 @@ export const HeroSection = () => {
           </p>
           
           {/* Description */}
-          <p className="text-lg md:text-xl text-porcelain-white/80 max-w-2xl mx-auto mb-12 leading-relaxed">
+          <p className="text-lg md:text-xl text-porcelain-white/80 mx-auto mb-12 leading-relaxed" style={{ maxWidth: '64ch', lineHeight: '1.6' }}>
             Reserva un slot de 15–20 min en nuestro livestream semanal. 
-            Presenta tus productos en vivo y llega a más clientes.
+            Llega al local, presenta tu producto y conecta con más clientes en vivo.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="hero" size="xl" asChild>
-              <Link to="/agenda">
+              <Link to="/agenda#proximos">
                 <Calendar className="w-5 h-5" />
                 Reservar mi slot
               </Link>

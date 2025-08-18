@@ -6,30 +6,30 @@ import { Link } from "react-router-dom";
 const upcomingShows = [
   {
     id: "1",
-    title: "JESS BOX Live - Productos Artesanales",
+    title: "JESS BOX Live – Productos Artesanales",
     date: "2024-01-25",
     time: "19:00",
-    duration: "3 horas",
+    endTime: "22:00",
     availableSlots: 8,
     totalSlots: 12,
     status: "available" as const
   },
   {
     id: "2", 
-    title: "JESS BOX Live - Moda y Accesorios",
+    title: "JESS BOX Live – Moda y Accesorios",
     date: "2024-02-01",
-    time: "19:00", 
-    duration: "3 horas",
+    time: "19:00",
+    endTime: "22:00", 
     availableSlots: 2,
     totalSlots: 12,
     status: "few-left" as const
   },
   {
     id: "3",
-    title: "JESS BOX Live - Tecnología y Gadgets", 
+    title: "JESS BOX Live – Tecnología y Gadgets", 
     date: "2024-02-08",
     time: "19:00",
-    duration: "3 horas",
+    endTime: "22:00",
     availableSlots: 0,
     totalSlots: 12,
     status: "full" as const
@@ -40,25 +40,25 @@ const getStatusBadge = (status: string, availableSlots: number) => {
   switch (status) {
     case "available":
       return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-600 text-white">
+        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: '#1FAD66', color: '#fff' }}>
           Disponible
         </span>
       );
     case "few-left":
       return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-few-left">
+        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: 'hsl(var(--brushed-gold))', color: 'hsl(var(--ink-black))' }}>
           Pocas plazas
         </span>
       );
     case "full":
       return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-500 text-white">
+        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: '#8A8A8A', color: '#fff' }}>
           Completo
         </span>
       );
     case "waiting":
       return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-500 text-white">
+        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: '#4A90E2', color: '#fff' }}>
           Lista de espera
         </span>
       );
@@ -96,7 +96,10 @@ export const UpcomingShowsSection = () => {
           {upcomingShows.map((show) => (
             <div
               key={show.id}
-              className="jess-shelf-card p-6"
+              className="rounded-2xl p-6 bg-ink-black text-porcelain-white" 
+              style={{ 
+                boxShadow: '0 16px 40px rgba(0,0,0,0.35), inset 0 -12px 24px rgba(255,255,255,0.08)'
+              }}
             >
               {/* Status Badge */}
               <div className="flex justify-between items-start mb-4">
@@ -116,22 +119,14 @@ export const UpcomingShowsSection = () => {
 
               {/* Show Details */}
               <div className="space-y-3 mb-6">
-                <div className="flex items-center text-porcelain-white/80">
+                <div className="flex items-center text-porcelain-white/90">
                   <Calendar className="w-4 h-4 mr-3 text-brushed-gold" />
-                  <span className="text-sm capitalize">{formatDate(show.date)}</span>
-                </div>
-                <div className="flex items-center text-porcelain-white/80">
-                  <Clock className="w-4 h-4 mr-3 text-brushed-gold" />
-                  <span className="text-sm">{show.time} – {show.duration}</span>
+                  <span className="text-sm capitalize">{formatDate(show.date)} · {show.time}–{show.endTime}</span>
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center text-porcelain-white/80">
-                    <Users className="w-4 h-4 mr-3 text-brushed-gold" />
-                    <span className="text-sm">Duración del slot: 15–20 min · Buffer: 2 min</span>
-                  </div>
-                  <div className="flex items-center text-porcelain-white/80">
-                    <div className="w-4 h-4 mr-3"></div>
-                    <span className="text-sm">Capacidad por slot: 1 vendedor</span>
+                    <Clock className="w-4 h-4 mr-3 text-brushed-gold" />
+                    <span className="text-sm">Slot 18' + buffer 2' · 1 vendedor por slot</span>
                   </div>
                 </div>
               </div>

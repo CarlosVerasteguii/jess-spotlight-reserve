@@ -46,13 +46,15 @@ export const HowItWorksSection = () => {
               >
                 {/* Connection Line */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-16 left-full w-full h-0.5 bg-warm-ivory z-0 transform translate-x-6">
-                    <div className="absolute inset-0 bg-gradient-to-r from-brushed-gold/30 to-transparent"></div>
+                  <div className="hidden md:block absolute top-16 left-full w-full h-0.5 z-0 transform translate-x-6" style={{ backgroundColor: 'hsl(var(--brushed-gold))', opacity: '0.5' }}>
                   </div>
                 )}
 
                 {/* Step Card */}
-                <div className="relative z-10 jess-card p-8 text-center hover:scale-105 jess-transition">
+                <div className="relative z-10 p-8 text-center hover:scale-105 jess-transition bg-porcelain-white rounded-2xl" 
+                     style={{ 
+                       boxShadow: '0 8px 20px rgba(0,0,0,0.06), inset 0 -10px 20px rgba(255,255,255,0.14)',
+                     }}>
                   {/* Step Number */}
                   <div className="absolute -top-4 -right-4 w-12 h-12 bg-brushed-gold text-ink-black rounded-full flex items-center justify-center font-bold text-lg jess-glow">
                     {step.step}
@@ -64,7 +66,7 @@ export const HowItWorksSection = () => {
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-semibold text-ink-black mb-4">
+                  <h3 className="text-xl font-semibold text-ink-black mb-4 uppercase">
                     {step.title}
                   </h3>
                   <p className="text-soft-graphite leading-relaxed">
@@ -77,7 +79,7 @@ export const HowItWorksSection = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-16">
+        <div className="text-center" style={{ marginTop: '88px' }}>
           <p className="text-soft-graphite mb-6">
             ¿Listo para mostrar tus productos al mundo?
           </p>

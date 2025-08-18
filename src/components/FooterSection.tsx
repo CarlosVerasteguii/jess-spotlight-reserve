@@ -109,11 +109,11 @@ export const FooterSection = () => {
         {/* Bottom Bar */}
         <div className="py-6 border-t border-soft-graphite/30">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-porcelain-white/60 text-sm">
+            <p className="text-sm" style={{ color: '#CFCFCF' }}>
               © 2024 JESS BOX. Todos los derechos reservados.
             </p>
             <div className="mt-4 md:mt-0">
-              <p className="text-porcelain-white/60 text-sm">
+              <p className="text-sm" style={{ color: '#CFCFCF' }}>
                 Hecho con ❤️ para emprendedores
               </p>
             </div>
