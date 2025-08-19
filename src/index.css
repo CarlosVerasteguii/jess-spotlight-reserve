@@ -2,70 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* JESS BOX Design System - Optimized tokens and base rules */
 
 @layer base {
   :root {
-    /* JESS BOX Brand Colors - Monochrome with Gold */
-    --ink-black: 0 0% 5%;          /* #0D0D0D */
-    --porcelain-white: 0 0% 100%;  /* #FFFFFF */
-    --soft-graphite: 0 0% 17%;     /* #2B2B2B */
-    --warm-ivory: 0 0% 97%;        /* #F7F7F7 */
-    --brushed-gold: 43 69% 51%;    /* #C8A03A */
+    /* Core Colors */
+    --black: #0D0D0D;
+    --black-2: #111111;
+    --white: #FFFFFF;
+    --ivory: #F6F6F6;
+    --text: #2B2B2B;
+    --gold: #C8A03A;
+    --gold-2: #D9B357;
+    
+    /* Status Colors */
+    --ok: #1FAD66;
+    --wait: #4A90E2;
+    --full: #8A8A8A;
+    --warn: #C8A03A;
 
-    /* Semantic Design System */
+    /* Typography Scale */
+    --h1: clamp(40px, 6vw, 64px);
+    --h2: clamp(28px, 4vw, 40px);
+    --h3: clamp(20px, 2.6vw, 24px);
+    --body: 16px;
+
+    /* Radios and Shadows */
+    --radius-card: 14px;
+    --radius-btn: 10px;
+    --shadow-card: 0 14px 28px rgba(0,0,0,.18);
+    --shadow-card-dark: 0 16px 40px rgba(0,0,0,.35);
+    --shelf: inset 0 -12px 24px rgba(255,255,255,.10);
+
+    /* Spacing Grid (8px base) */
+    --s1: 8px;
+    --s2: 12px;
+    --s3: 16px;
+    --s4: 24px;
+    --s5: 32px;
+    --s6: 48px;
+    --s7: 64px;
+
+    /* Legacy Semantic Design System (for compatibility) */
+    --ink-black: 0 0% 5%;
+    --porcelain-white: 0 0% 100%;
+    --soft-graphite: 0 0% 17%;
+    --warm-ivory: 0 0% 97%;
+    --brushed-gold: 43 69% 51%;
+
     --background: var(--porcelain-white);
     --foreground: var(--soft-graphite);
-
     --card: var(--porcelain-white);
     --card-foreground: var(--soft-graphite);
-
     --popover: var(--porcelain-white);
     --popover-foreground: var(--soft-graphite);
-
     --primary: var(--brushed-gold);
     --primary-foreground: var(--ink-black);
-
     --secondary: var(--warm-ivory);
     --secondary-foreground: var(--soft-graphite);
-
     --muted: var(--warm-ivory);
     --muted-foreground: 0 0% 45%;
-
     --accent: var(--brushed-gold);
     --accent-foreground: var(--ink-black);
-
     --destructive: 0 84% 60%;
     --destructive-foreground: var(--porcelain-white);
-
     --border: 0 0% 90%;
     --input: 0 0% 90%;
     --ring: var(--brushed-gold);
-
     --radius: 0.5rem;
 
-    /* JESS BOX Special Effects */
     --glow-subtle: 0 4px 12px hsl(var(--brushed-gold) / 0.15);
     --glow-prominent: 0 8px 24px hsl(var(--brushed-gold) / 0.25);
     --backlight: 0 2px 8px hsl(0 0% 0% / 0.08);
     --transition-smooth: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -109,21 +126,50 @@ All colors MUST be HSL.
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: var(--body);
+    color: var(--text);
+    @apply bg-background text-foreground antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: Poppins, Inter, sans-serif;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.02em;
+  }
+
+  /* Accessibility */
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--gold);
+    color: var(--black);
+    padding: 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 100;
+  }
+
+  .skip-link:focus {
+    top: 6px;
   }
 
   /* Status badge colors */
@@ -162,33 +208,142 @@ All colors MUST be HSL.
 }
 
 @layer components {
+  /* Hero Components */
+  .hero {
+    position: relative;
+    min-height: 80vh;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.45) 40%, rgba(0,0,0,.55) 100%);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 64ch;
+    line-height: 1.6;
+  }
+
+  /* Button Components */
+  .btn-gold {
+    position: relative;
+    overflow: hidden;
+    background: var(--gold);
+    color: var(--black-2);
+    border-radius: var(--radius-btn);
+    transition: all 0.2s ease;
+  }
+
+  .btn-gold::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: -120%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.28) 50%, transparent 100%);
+    transform: skewX(-20deg);
+    transition: left .6s;
+  }
+
+  .btn-gold:hover::after {
+    left: 120%;
+  }
+
+  /* Card Components */
+  .step-card {
+    background: var(--white);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card), var(--shelf);
+    padding: var(--s5);
+    transition: transform 0.2s ease, box-shadow 0.2s;
+  }
+
+  .step-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .card-live {
+    background: #121212;
+    color: #F2F2F2;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card-dark), var(--shelf);
+    transition: transform 0.2s ease, box-shadow 0.2s;
+  }
+
+  .card-live:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 50px rgba(0,0,0,.45), var(--shelf);
+  }
+
+  /* Status Badges */
+  .badge-ok {
+    background: var(--ok);
+    color: var(--white);
+  }
+
+  .badge-warn {
+    background: var(--warn);
+    color: var(--black-2);
+  }
+
+  .badge-full {
+    background: var(--full);
+    color: var(--white);
+  }
+
+  .badge-wait {
+    background: var(--wait);
+    color: var(--white);
+  }
+
+  /* Typography */
   .jess-hero-title {
-    @apply text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight;
-    font-family: 'Poppins', sans-serif;
+    font-size: var(--h1);
+    font-family: Poppins, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.02em;
+    font-weight: 700;
   }
 
+  .jess-h2 {
+    font-size: var(--h2);
+  }
+
+  .jess-h3 {
+    font-size: var(--h3);
+  }
+
+  /* Utilities */
   .jess-section-padding {
-    @apply py-16 md:py-24 lg:py-32;
+    padding-top: var(--s7);
+    padding-bottom: var(--s7);
   }
 
-  .jess-card {
-    @apply bg-card text-card-foreground rounded-lg border jess-backlight jess-transition;
+  .jess-transition {
+    transition: var(--transition-smooth);
   }
 
-  .jess-card:hover {
-    @apply jess-glow;
+  .jess-glow {
+    box-shadow: var(--glow-subtle);
   }
 
-  .jess-shelf-card {
-    @apply bg-card text-card-foreground rounded-2xl jess-transition;
-    box-shadow: 
-      0 14px 28px rgba(0,0,0,0.22),
-      inset 0 -10px 24px rgba(255,255,255,0.18);
+  .jess-glow-prominent {
+    box-shadow: var(--glow-prominent);
   }
 
-  .jess-shelf-card:hover {
-    @apply jess-glow;
+  .jess-backlight {
+    box-shadow: var(--backlight);
+  }
+
+  /* Separator */
+  .step-separator {
+    height: 2px;
+    background: var(--gold);
+    opacity: 0.5;
+    width: 100%;
   }
 }

@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, Users } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 
-// Mock data for upcoming shows
-const upcomingShows = [
+// Mock data for upcoming lives
+const upcomingLives = [
   {
     id: "1",
     title: "JESS BOX Live – Productos Artesanales",
-    date: "2024-01-25",
+    date: "2024-01-24",
     time: "19:00",
     endTime: "22:00",
     availableSlots: 8,
@@ -36,29 +36,31 @@ const upcomingShows = [
   }
 ];
 
-const getStatusBadge = (status: string, availableSlots: number) => {
+const getStatusBadge = (status: string) => {
+  const baseClasses = "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium";
+  
   switch (status) {
     case "available":
       return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: '#1FAD66', color: '#fff' }}>
+        <span className={`${baseClasses} badge-ok`}>
           Disponible
         </span>
       );
     case "few-left":
       return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: 'hsl(var(--brushed-gold))', color: 'hsl(var(--ink-black))' }}>
+        <span className={`${baseClasses} badge-warn`}>
           Pocas plazas
         </span>
       );
     case "full":
       return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: '#8A8A8A', color: '#fff' }}>
+        <span className={`${baseClasses} badge-full`}>
           Completo
         </span>
       );
     case "waiting":
       return (
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: '#4A90E2', color: '#fff' }}>
+        <span className={`${baseClasses} badge-wait`}>
           Lista de espera
         </span>
       );
@@ -70,79 +72,113 @@ const getStatusBadge = (status: string, availableSlots: number) => {
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
   return date.toLocaleDateString('es-ES', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
   });
 };
 
 export const UpcomingShowsSection = () => {
   return (
-    <section className="jess-section-padding bg-ink-black">
+    <section 
+      className="jess-section-padding"
+      style={{ background: 'var(--black)' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-porcelain-white mb-6">
+        <div className="text-center" style={{ marginBottom: 'var(--s5)' }}>
+          <h2 
+            className="jess-h2 font-bold mb-6"
+            style={{ color: 'var(--white)' }}
+          >
             Próximos Lives
           </h2>
-          <p className="text-lg md:text-xl text-porcelain-white/80 max-w-2xl mx-auto leading-relaxed">
+          <p 
+            className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            style={{ color: 'var(--white)', opacity: 0.8 }}
+          >
             Encuentra el slot perfecto para mostrar tus productos en vivo
           </p>
         </div>
 
-        {/* Shows Grid */}
+        {/* Lives Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {upcomingShows.map((show) => (
+          {upcomingLives.map((live) => (
             <div
-              key={show.id}
-              className="rounded-2xl p-6 bg-ink-black text-porcelain-white" 
-              style={{ 
-                boxShadow: '0 16px 40px rgba(0,0,0,0.35), inset 0 -12px 24px rgba(255,255,255,0.08)'
-              }}
+              key={live.id}
+              className="card-live p-6"
             >
-              {/* Status Badge */}
+              {/* Status Badge & Slots */}
               <div className="flex justify-between items-start mb-4">
-                {getStatusBadge(show.status, show.availableSlots)}
-                <div className="text-right">
-                  <div className="text-sm text-porcelain-white/60">Slots</div>
-                  <div className="text-lg font-semibold text-porcelain-white">
-                    {show.availableSlots}/{show.totalSlots}
-                  </div>
+                {getStatusBadge(live.status)}
+                <div 
+                  className="text-right px-3 py-1 rounded-full text-xs"
+                  style={{ 
+                    background: 'rgba(255,255,255,0.1)',
+                    color: 'var(--white)'
+                  }}
+                >
+                  Slots {live.availableSlots}/{live.totalSlots}
                 </div>
               </div>
 
-              {/* Show Title */}
-              <h3 className="text-lg font-semibold text-porcelain-white mb-4 leading-tight">
-                {show.title}
+              {/* Live Title */}
+              <h3 
+                className="text-lg font-semibold mb-4 leading-tight"
+                style={{ 
+                  color: 'var(--white)',
+                  lineHeight: '1.3'
+                }}
+              >
+                {live.title}
               </h3>
 
-              {/* Show Details */}
+              {/* Live Details */}
               <div className="space-y-3 mb-6">
-                <div className="flex items-center text-porcelain-white/90">
-                  <Calendar className="w-4 h-4 mr-3 text-brushed-gold" />
-                  <span className="text-sm capitalize">{formatDate(show.date)} · {show.time}–{show.endTime}</span>
+                <div 
+                  className="flex items-center"
+                  style={{ color: 'var(--white)', opacity: 0.9 }}
+                >
+                  <Calendar 
+                    className="w-4 h-4 mr-3" 
+                    style={{ color: 'var(--gold)' }} 
+                  />
+                  <span className="text-sm">
+                    {formatDate(live.date)} · {live.time}–{live.endTime}
+                  </span>
                 </div>
-                <div className="space-y-1">
-                  <div className="flex items-center text-porcelain-white/80">
-                    <Clock className="w-4 h-4 mr-3 text-brushed-gold" />
-                    <span className="text-sm">Slot 18' + buffer 2' · 1 vendedor por slot</span>
-                  </div>
+                <div 
+                  className="flex items-center"
+                  style={{ color: 'var(--white)', opacity: 0.8 }}
+                >
+                  <Clock 
+                    className="w-4 h-4 mr-3" 
+                    style={{ color: 'var(--gold)' }} 
+                  />
+                  <span className="text-sm">
+                    Slot 18' + buffer 2' · 1 vendedor por slot
+                  </span>
                 </div>
               </div>
 
               {/* CTA Button */}
               <Button 
-                variant={show.status === "full" ? "minimal" : "hero"} 
+                variant={live.status === "full" ? "outline" : "hero"} 
                 size="sm" 
-                className="w-full"
-                disabled={show.status === "full"}
-                asChild={show.status !== "full"}
+                className={`w-full ${live.status !== "full" ? "btn-gold" : ""}`}
+                disabled={live.status === "full"}
+                asChild={live.status !== "full"}
+                style={live.status === "full" ? {
+                  borderColor: 'var(--full)',
+                  color: 'var(--full)',
+                  background: 'transparent'
+                } : {}}
               >
-                {show.status === "full" ? (
+                {live.status === "full" ? (
                   <span>Lista de espera</span>
                 ) : (
-                  <Link to={`/show/${show.id}`}>
+                  <Link to={`/show/${live.id}`}>
                     Seleccionar horario
                   </Link>
                 )}
@@ -153,7 +189,12 @@ export const UpcomingShowsSection = () => {
 
         {/* Bottom CTA */}
         <div className="text-center">
-          <Button variant="elegant" size="lg" asChild>
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="border-white/20 text-white hover:bg-white/10"
+            asChild
+          >
             <Link to="/agenda">
               Ver toda la agenda
             </Link>

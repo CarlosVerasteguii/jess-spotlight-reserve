@@ -26,14 +26,23 @@ const testimonials = [
 
 export const TestimonialsSection = () => {
   return (
-    <section className="jess-section-padding bg-warm-ivory">
+    <section 
+      className="jess-section-padding"
+      style={{ background: 'var(--ivory)' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink-black mb-6">
+        <div className="text-center" style={{ marginBottom: 'var(--s5)' }}>
+          <h2 
+            className="jess-h2 font-bold mb-6"
+            style={{ color: 'var(--black)' }}
+          >
             Lo que dicen nuestros emprendedores
           </h2>
-          <p className="text-lg md:text-xl text-soft-graphite max-w-2xl mx-auto leading-relaxed">
+          <p 
+            className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            style={{ color: 'var(--text)' }}
+          >
             Historias reales de éxito en JESS BOX
           </p>
         </div>
@@ -43,20 +52,26 @@ export const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="jess-card p-8 hover:scale-105 jess-transition bg-porcelain-white"
+              className="step-card"
+              style={{ background: 'var(--white)' }}
             >
               {/* Rating Stars */}
               <div className="flex items-center mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <Star
                     key={i}
-                    className="w-5 h-5 text-brushed-gold fill-current"
+                    className="w-4 h-4 fill-current"
+                    style={{ color: 'var(--gold)' }}
+                    aria-label={i === 0 ? `${testimonial.rating} de 5 estrellas` : undefined}
                   />
                 ))}
               </div>
 
               {/* Testimonial Content */}
-              <blockquote className="text-soft-graphite leading-relaxed mb-6 italic">
+              <blockquote 
+                className="leading-relaxed mb-6 italic"
+                style={{ color: 'var(--text)' }}
+              >
                 "{testimonial.content}"
               </blockquote>
 
@@ -65,14 +80,25 @@ export const TestimonialsSection = () => {
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover mr-4"
-                  style={{ border: '1px solid #eee' }}
+                  className="w-10 h-10 rounded-full object-cover mr-4"
+                  style={{ 
+                    border: '1px solid #eee',
+                    width: '40px',
+                    height: '40px'
+                  }}
+                  loading="lazy"
                 />
                 <div>
-                  <div className="font-semibold text-ink-black">
+                  <div 
+                    className="font-semibold"
+                    style={{ color: 'var(--black)' }}
+                  >
                     {testimonial.name}
                   </div>
-                  <div className="text-sm text-brushed-gold">
+                  <div 
+                    className="text-sm"
+                    style={{ color: 'var(--gold)' }}
+                  >
                     {testimonial.business}
                   </div>
                 </div>
@@ -82,19 +108,40 @@ export const TestimonialsSection = () => {
         </div>
 
         {/* Trust Stats */}
-        <div className="mt-16 pt-12 border-t border-soft-graphite/20">
+        <div 
+          className="mt-16 pt-12 border-t"
+          style={{ borderColor: 'rgba(43, 43, 43, 0.1)' }}
+        >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-brushed-gold mb-2">95%</div>
-              <div className="text-soft-graphite">Satisfacción de emprendedores</div>
+              <div 
+                className="text-3xl md:text-4xl font-bold mb-2"
+                style={{ color: 'var(--gold)' }}
+                title="Dato demo, ajustable en lanzamiento"
+              >
+                95%
+              </div>
+              <div style={{ color: 'var(--text)' }}>Satisfacción de emprendedores</div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-brushed-gold mb-2">100+</div>
-              <div className="text-soft-graphite">Productos presentados</div>
+              <div 
+                className="text-3xl md:text-4xl font-bold mb-2"
+                style={{ color: 'var(--gold)' }}
+                title="Dato demo, ajustable en lanzamiento"
+              >
+                100+
+              </div>
+              <div style={{ color: 'var(--text)' }}>Productos presentados</div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-brushed-gold mb-2">5k+</div>
-              <div className="text-soft-graphite">Espectadores promedio</div>
+              <div 
+                className="text-3xl md:text-4xl font-bold mb-2"
+                style={{ color: 'var(--gold)' }}
+                title="Dato demo, ajustable en lanzamiento"
+              >
+                5k+
+              </div>
+              <div style={{ color: 'var(--text)' }}>Espectadores promedio</div>
             </div>
           </div>
         </div>

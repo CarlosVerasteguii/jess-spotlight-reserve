@@ -23,14 +23,23 @@ const steps = [
 
 export const HowItWorksSection = () => {
   return (
-    <section className="jess-section-padding bg-porcelain-white">
+    <section 
+      className="jess-section-padding"
+      style={{ background: 'var(--white)' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink-black mb-6">
+        <div className="text-center" style={{ marginBottom: 'var(--s5)' }}>
+          <h2 
+            className="jess-h2 font-bold mb-6"
+            style={{ color: 'var(--black)' }}
+          >
             Cómo funciona
           </h2>
-          <p className="text-lg md:text-xl text-soft-graphite max-w-2xl mx-auto leading-relaxed">
+          <p 
+            className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            style={{ color: 'var(--text)' }}
+          >
             Tres pasos simples para presentar tus productos en nuestro livestream exclusivo
           </p>
         </div>
@@ -46,30 +55,56 @@ export const HowItWorksSection = () => {
               >
                 {/* Connection Line */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-16 left-full w-full h-0.5 z-0 transform translate-x-6" style={{ backgroundColor: 'hsl(var(--brushed-gold))', opacity: '0.5' }}>
-                  </div>
+                  <div 
+                    className="hidden md:block absolute top-16 left-full w-full z-0 transform translate-x-6 step-separator"
+                  />
                 )}
 
                 {/* Step Card */}
-                <div className="relative z-10 p-8 text-center hover:scale-105 jess-transition bg-porcelain-white rounded-2xl" 
-                     style={{ 
-                       boxShadow: '0 8px 20px rgba(0,0,0,0.06), inset 0 -10px 20px rgba(255,255,255,0.14)',
-                     }}>
+                <div className="step-card relative z-10 text-center">
                   {/* Step Number */}
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-brushed-gold text-ink-black rounded-full flex items-center justify-center font-bold text-lg jess-glow">
+                  <div 
+                    className="absolute -top-4 -right-4 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg jess-glow"
+                    style={{ 
+                      background: 'var(--gold)', 
+                      color: 'var(--black)' 
+                    }}
+                  >
                     {step.step}
                   </div>
 
                   {/* Icon */}
-                  <div className="w-16 h-16 bg-warm-ivory rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-brushed-gold/10 jess-transition">
-                    <Icon className="w-8 h-8 text-brushed-gold" />
+                  <div 
+                    className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6 jess-transition"
+                    style={{ 
+                      background: 'var(--ivory)',
+                      width: '56px',
+                      height: '56px'
+                    }}
+                  >
+                    <Icon 
+                      className="w-6 h-6" 
+                      style={{ 
+                        color: 'var(--gold)',
+                        strokeWidth: '1.75px'
+                      }} 
+                    />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-semibold text-ink-black mb-4 uppercase">
+                  <h3 
+                    className="jess-h3 font-semibold mb-4"
+                    style={{ color: 'var(--black)' }}
+                  >
                     {step.title}
                   </h3>
-                  <p className="text-soft-graphite leading-relaxed">
+                  <p 
+                    className="leading-relaxed"
+                    style={{ 
+                      color: 'var(--text)',
+                      lineHeight: '1.65'
+                    }}
+                  >
                     {step.description}
                   </p>
                 </div>
@@ -79,11 +114,20 @@ export const HowItWorksSection = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center" style={{ marginTop: '88px' }}>
-          <p className="text-soft-graphite mb-6">
+        <div 
+          className="text-center" 
+          style={{ marginTop: 'calc(var(--s7) + var(--s4))' }}
+        >
+          <p 
+            className="mb-6"
+            style={{ color: 'var(--text)' }}
+          >
             ¿Listo para mostrar tus productos al mundo?
           </p>
-          <div className="w-32 h-1 bg-brushed-gold mx-auto jess-glow"></div>
+          <div 
+            className="w-32 h-1 mx-auto jess-glow"
+            style={{ background: 'var(--gold)' }}
+          ></div>
         </div>
       </div>
     </section>
