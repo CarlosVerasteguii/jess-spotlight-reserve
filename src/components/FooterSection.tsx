@@ -93,12 +93,14 @@ export const FooterSection = () => {
                   className="jess-transition"
                   style={{ color: '#EDEDED' }}
                   onMouseEnter={(e) => {
-                    e.target.style.textDecoration = 'underline';
-                    e.target.style.opacity = '0.85';
+                    const target = e.target as HTMLElement;
+                    target.style.textDecoration = 'underline';
+                    target.style.opacity = '0.85';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.textDecoration = 'none';
-                    e.target.style.opacity = '1';
+                    const target = e.target as HTMLElement;
+                    target.style.textDecoration = 'none';
+                    target.style.opacity = '1';
                   }}
                 >
                   Cómo funciona
@@ -110,12 +112,14 @@ export const FooterSection = () => {
                   className="jess-transition"
                   style={{ color: '#EDEDED' }}
                   onMouseEnter={(e) => {
-                    e.target.style.textDecoration = 'underline';
-                    e.target.style.opacity = '0.85';
+                    const target = e.target as HTMLElement;
+                    target.style.textDecoration = 'underline';
+                    target.style.opacity = '0.85';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.textDecoration = 'none';
-                    e.target.style.opacity = '1';
+                    const target = e.target as HTMLElement;
+                    target.style.textDecoration = 'none';
+                    target.style.opacity = '1';
                   }}
                 >
                   Ayuda
@@ -127,12 +131,14 @@ export const FooterSection = () => {
                   className="jess-transition"
                   style={{ color: '#EDEDED' }}
                   onMouseEnter={(e) => {
-                    e.target.style.textDecoration = 'underline';
-                    e.target.style.opacity = '0.85';
+                    const target = e.target as HTMLElement;
+                    target.style.textDecoration = 'underline';
+                    target.style.opacity = '0.85';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.textDecoration = 'none';
-                    e.target.style.opacity = '1';
+                    const target = e.target as HTMLElement;
+                    target.style.textDecoration = 'none';
+                    target.style.opacity = '1';
                   }}
                 >
                   Mi cuenta
@@ -156,12 +162,14 @@ export const FooterSection = () => {
                   className="jess-transition"
                   style={{ color: '#EDEDED' }}
                   onMouseEnter={(e) => {
-                    e.target.style.textDecoration = 'underline';
-                    e.target.style.opacity = '0.85';
+                    const target = e.target as HTMLElement;
+                    target.style.textDecoration = 'underline';
+                    target.style.opacity = '0.85';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.textDecoration = 'none';
-                    e.target.style.opacity = '1';
+                    const target = e.target as HTMLElement;
+                    target.style.textDecoration = 'none';
+                    target.style.opacity = '1';
                   }}
                 >
                   Términos de uso
@@ -173,12 +181,14 @@ export const FooterSection = () => {
                   className="jess-transition"
                   style={{ color: '#EDEDED' }}
                   onMouseEnter={(e) => {
-                    e.target.style.textDecoration = 'underline';
-                    e.target.style.opacity = '0.85';
+                    const target = e.target as HTMLElement;
+                    target.style.textDecoration = 'underline';
+                    target.style.opacity = '0.85';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.textDecoration = 'none';
-                    e.target.style.opacity = '1';
+                    const target = e.target as HTMLElement;
+                    target.style.textDecoration = 'none';
+                    target.style.opacity = '1';
                   }}
                 >
                   Política de privacidad
@@ -190,12 +200,14 @@ export const FooterSection = () => {
                   className="jess-transition"
                   style={{ color: '#EDEDED' }}
                   onMouseEnter={(e) => {
-                    e.target.style.textDecoration = 'underline';
-                    e.target.style.opacity = '0.85';
+                    const target = e.target as HTMLElement;
+                    target.style.textDecoration = 'underline';
+                    target.style.opacity = '0.85';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.textDecoration = 'none';
-                    e.target.style.opacity = '1';
+                    const target = e.target as HTMLElement;
+                    target.style.textDecoration = 'none';
+                    target.style.opacity = '1';
                   }}
                 >
                   Política de cookies

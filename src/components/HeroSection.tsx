@@ -46,7 +46,7 @@ export const HeroSection = () => {
             <Button variant="hero" size="xl" asChild>
               <Link to="/agenda#proximos">
                 <Calendar className="w-5 h-5" />
-                Reservar mi slot
+                Reservar mi turno
               </Link>
             </Button>
             

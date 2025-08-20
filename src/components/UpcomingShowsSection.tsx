@@ -178,8 +178,8 @@ export const UpcomingShowsSection = () => {
                 {live.status === "full" ? (
                   <span>Lista de espera</span>
                 ) : (
-                  <Link to={`/show/${live.id}`}>
-                    Seleccionar horario
+                  <Link to={`/live/${live.id}`}>
+                    Seleccionar turno
                   </Link>
                 )}
               </Button>
@@ -190,9 +190,9 @@ export const UpcomingShowsSection = () => {
         {/* Bottom CTA */}
         <div className="text-center">
           <Button 
-            variant="outline" 
+            variant="hero" 
             size="lg" 
-            className="border-white/20 text-white hover:bg-white/10"
+            className="btn-gold"
             asChild
           >
             <Link to="/agenda">

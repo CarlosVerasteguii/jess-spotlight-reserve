@@ -60,7 +60,7 @@ export const Navigation = () => {
             <Button variant="hero" size="sm" asChild>
               <Link to="/agenda">
                 <Calendar className="w-4 h-4" />
-                Reservar
+                Reservar turno
               </Link>
             </Button>
           </div>
@@ -119,7 +119,7 @@ export const Navigation = () => {
                 <Button variant="hero" size="sm" asChild>
                   <Link to="/agenda" onClick={() => setIsMenuOpen(false)}>
                     <Calendar className="w-4 h-4" />
-                    Reservar ahora
+                    Reservar turno
                   </Link>
                 </Button>
               </div>

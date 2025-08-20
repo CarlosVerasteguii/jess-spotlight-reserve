@@ -61,13 +61,15 @@ export const HowItWorksSection = () => {
                 )}
 
                 {/* Step Card */}
-                <div className="step-card relative z-10 text-center">
+                <div className="step-card relative z-10 text-center how-card">
                   {/* Step Number */}
                   <div 
-                    className="absolute -top-4 -right-4 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg jess-glow"
+                    className="absolute -top-3 right-4 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm bg-brushed-gold text-ink-black jess-glow how-card__num"
                     style={{ 
-                      background: 'var(--gold)', 
-                      color: 'var(--black)' 
+                      top: '-14px',
+                      width: '24px',
+                      height: '24px',
+                      lineHeight: '24px'
                     }}
                   >
                     {step.step}
