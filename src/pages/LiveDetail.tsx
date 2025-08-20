@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock, User, CheckCircle2, AlertCircle, Minus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 // Mock data for the live event
 const getLiveData = (id: string) => {
@@ -45,9 +46,19 @@ const getLiveData = (id: string) => {
   return mockLives[id as keyof typeof mockLives];
 };
 
-// Generate time slots for the live
-const generateTimeSlots = (startTime: string, endTime: string, slotDuration: number = 18) => {
-  const slots = [];
+// Stable data types
+type SlotStatus = 'available' | 'occupied' | 'closed';
+type Slot = { 
+  id: string; 
+  startTime: string; 
+  endTime: string; 
+  status: SlotStatus;
+  number: number;
+};
+
+// Generate time slots for the live (called only once)
+const generateTimeSlots = (startTime: string, endTime: string, slotDuration: number = 18): Slot[] => {
+  const slots: Slot[] = [];
   const start = new Date(`2024-01-01T${startTime}:00`);
   const end = new Date(`2024-01-01T${endTime}:00`);
   
@@ -63,7 +74,7 @@ const generateTimeSlots = (startTime: string, endTime: string, slotDuration: num
       id: `slot-${slotNumber}`,
       startTime: slotStart,
       endTime: slotEnd,
-      status: Math.random() > 0.6 ? 'available' : Math.random() > 0.3 ? 'occupied' : 'closed',
+      status: 'available', // Default to available, will be set once
       number: slotNumber
     });
     
@@ -115,8 +126,27 @@ export default function LiveDetail() {
   const navigate = useNavigate();
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [slots, setSlots] = useState<Slot[]>([]);
+  const init = useRef(false);
   
   const liveData = getLiveData(id!);
+
+  // Initialize slots only once
+  useEffect(() => {
+    if (init.current || !liveData) return;
+    init.current = true;
+    
+    const baseSlots = generateTimeSlots(liveData.time, liveData.endTime);
+    // Simulate some occupied slots (only once)
+    const occupiedIds = ['slot-3', 'slot-7', 'slot-10'];
+    const slotsWithStatus = baseSlots.map(slot => 
+      occupiedIds.includes(slot.id) 
+        ? { ...slot, status: 'occupied' as SlotStatus }
+        : slot
+    );
+    
+    setSlots(slotsWithStatus);
+  }, [liveData]);
   
   if (!liveData) {
     return (
@@ -131,8 +161,7 @@ export default function LiveDetail() {
     );
   }
 
-  const timeSlots = generateTimeSlots(liveData.time, liveData.endTime);
-  const canReserve = selectedSlot && acceptedTerms && liveData.status !== 'full';
+  const canReserve = Boolean(selectedSlot && acceptedTerms && liveData.status !== 'full');
 
   const handleReservation = () => {
     if (canReserve) {
@@ -205,40 +234,47 @@ export default function LiveDetail() {
                 <h2 className="text-xl font-bold text-ink-black mb-6">Selecciona tu turno</h2>
                 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {timeSlots.map((slot) => (
-                    <button
-                      key={slot.id}
-                      onClick={() => slot.status === 'available' ? setSelectedSlot(slot.id) : null}
-                      disabled={slot.status !== 'available'}
-                      className={`
-                        relative p-4 rounded-xl border-2 transition-all duration-200 min-h-[60px] flex flex-col items-center justify-center
-                        ${slot.status === 'available' 
-                          ? selectedSlot === slot.id 
-                            ? 'border-brushed-gold bg-brushed-gold text-ink-black font-medium shadow-md' 
-                            : 'border-neutral-200 hover:border-brushed-gold bg-white text-ink-black'
-                          : slot.status === 'occupied'
-                            ? 'border-neutral-300 bg-neutral-100 text-neutral-500 cursor-not-allowed'
-                            : 'border-neutral-300 bg-neutral-200 text-neutral-400 cursor-not-allowed'
-                        }
-                      `}
-                      aria-pressed={selectedSlot === slot.id}
-                      aria-disabled={slot.status !== 'available'}
-                    >
-                      <div className="text-sm font-medium">
-                        {slot.startTime}–{slot.endTime}
-                      </div>
-                      <div className="text-xs opacity-75">
-                        Turno {slot.number}
-                      </div>
-                      
-                      {slot.status === 'occupied' && (
-                        <User className="absolute top-2 right-2 w-3 h-3" />
-                      )}
-                      {slot.status === 'closed' && (
-                        <Minus className="absolute top-2 right-2 w-3 h-3" />
-                      )}
-                    </button>
-                  ))}
+                  {slots.map((slot) => {
+                    const isSelected = selectedSlot === slot.id;
+                    const isOccupied = slot.status !== 'available';
+                    
+                    return (
+                      <button
+                        key={slot.id}
+                        onClick={() => !isOccupied && setSelectedSlot(isSelected ? null : slot.id)}
+                        disabled={isOccupied}
+                        className={cn(
+                          "relative p-4 rounded-xl border-2 transition-all duration-200 min-h-[60px] flex flex-col items-center justify-center",
+                          {
+                            // Selected state (highest priority)
+                            "border-brushed-gold bg-brushed-gold text-ink-black font-medium shadow-md": isSelected,
+                            // Available state
+                            "border-neutral-200 hover:border-brushed-gold bg-white text-ink-black": !isSelected && !isOccupied,
+                            // Occupied state  
+                            "border-neutral-300 bg-neutral-100 text-neutral-500 cursor-not-allowed": isOccupied && slot.status === 'occupied',
+                            // Closed state
+                            "border-neutral-300 bg-neutral-200 text-neutral-400 cursor-not-allowed": isOccupied && slot.status === 'closed'
+                          }
+                        )}
+                        aria-pressed={isSelected}
+                        aria-disabled={isOccupied}
+                      >
+                        <div className="text-sm font-medium">
+                          {slot.startTime}–{slot.endTime}
+                        </div>
+                        <div className="text-xs opacity-75">
+                          Turno {slot.number}
+                        </div>
+                        
+                        {slot.status === 'occupied' && (
+                          <User className="absolute top-2 right-2 w-3 h-3" />
+                        )}
+                        {slot.status === 'closed' && (
+                          <Minus className="absolute top-2 right-2 w-3 h-3" />
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
 
                 {/* Legend */}
@@ -292,8 +328,8 @@ export default function LiveDetail() {
                   <span className="text-soft-graphite">Turno:</span>
                   <span className="text-ink-black font-medium">
                     {selectedSlot 
-                      ? timeSlots.find(s => s.id === selectedSlot)?.startTime + '–' + 
-                        timeSlots.find(s => s.id === selectedSlot)?.endTime
+                      ? slots.find(s => s.id === selectedSlot)?.startTime + '–' + 
+                        slots.find(s => s.id === selectedSlot)?.endTime
                       : 'No seleccionado'
                     }
                   </span>
