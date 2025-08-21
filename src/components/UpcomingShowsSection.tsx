@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const upcomingLives = [
   {
     id: "1",
-    title: "JESS BOX Live – Productos Artesanales",
+    title: "THE BOX CLUB Live – Productos Artesanales",
     date: "2024-01-24",
     time: "19:00",
     endTime: "22:00",
@@ -16,7 +16,7 @@ const upcomingLives = [
   },
   {
     id: "2", 
-    title: "JESS BOX Live – Moda y Accesorios",
+    title: "THE BOX CLUB Live – Moda y Accesorios",
     date: "2024-02-01",
     time: "19:00",
     endTime: "22:00", 
@@ -26,7 +26,7 @@ const upcomingLives = [
   },
   {
     id: "3",
-    title: "JESS BOX Live – Tecnología y Gadgets", 
+    title: "THE BOX CLUB Live – Tecnología y Gadgets", 
     date: "2024-02-08",
     time: "19:00",
     endTime: "22:00",
@@ -159,6 +159,12 @@ export const UpcomingShowsSection = () => {
                   <span className="text-sm">
                     Slot 18' + buffer 2' · 1 vendedor por slot
                   </span>
+                </div>
+                <div 
+                  className="flex items-center text-xs"
+                  style={{ color: 'var(--white)', opacity: 0.7 }}
+                >
+                  <span>Equipo se elige en el siguiente paso</span>
                 </div>
               </div>
 

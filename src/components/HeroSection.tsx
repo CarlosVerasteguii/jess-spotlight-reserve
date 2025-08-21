@@ -10,7 +10,7 @@ export const HeroSection = () => {
       <div className="absolute inset-0 z-0">
         <img 
           src={heroImage} 
-          alt="JESS BOX Studio" 
+          alt="THE BOX CLUB Studio" 
           className="w-full h-full object-cover opacity-40"
         />
         <div 
@@ -27,7 +27,7 @@ export const HeroSection = () => {
         <div className="max-w-4xl mx-auto">
           {/* Main Title */}
           <h1 className="jess-hero-title text-porcelain-white mb-6">
-            JESS BOX
+            THE BOX CLUB
           </h1>
           
           {/* Subtitle */}
@@ -37,7 +37,7 @@ export const HeroSection = () => {
           
           {/* Description */}
           <p className="text-lg md:text-xl text-porcelain-white/80 mx-auto mb-12 leading-relaxed" style={{ maxWidth: '64ch', lineHeight: '1.6' }}>
-            Reserva un slot de 15–20 min en nuestro livestream semanal. 
+            Reserva un turno de 15–20 min en nuestro livestream semanal. 
             Llega al local, presenta tu producto y conecta con más clientes en vivo.
           </p>
 

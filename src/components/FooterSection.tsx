@@ -21,9 +21,9 @@ export const FooterSection = () => {
                 className="w-10 h-10 rounded-sm flex items-center justify-center jess-glow"
                 style={{ background: 'var(--gold)' }}
               >
-                <span style={{ color: 'var(--black)', fontWeight: 'bold' }}>JB</span>
+                <span style={{ color: 'var(--black)', fontWeight: 'bold' }}>BC</span>
               </div>
-              <span className="text-2xl font-bold tracking-wide uppercase">JESS BOX</span>
+              <span className="text-2xl font-bold tracking-wide uppercase">THE BOX CLUB</span>
             </div>
             <p className="mb-6 max-w-md leading-relaxed" style={{ color: '#CFCFCF', opacity: 0.8 }}>
               La plataforma líder para emprendedores que quieren mostrar sus productos 
@@ -33,13 +33,13 @@ export const FooterSection = () => {
               <div className="flex items-center" style={{ color: '#CFCFCF' }}>
                 <Mail className="w-4 h-4 mr-3" style={{ color: 'var(--gold)' }} />
                 <a 
-                  href="mailto:hola@jessbox.com"
+                  href="mailto:hola@theboxclub.co"
                   className="jess-transition"
                   style={{ color: '#EDEDED' }}
                   onMouseEnter={(e) => (e.target as HTMLElement).style.textDecoration = 'underline'}
                   onMouseLeave={(e) => (e.target as HTMLElement).style.textDecoration = 'none'}
                 >
-                  hola@jessbox.com
+                  hola@theboxclub.co
                 </a>
               </div>
               <div className="flex items-center" style={{ color: '#CFCFCF' }}>
@@ -221,7 +221,7 @@ export const FooterSection = () => {
         <div className="py-6 border-t" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm" style={{ color: '#CFCFCF' }}>
-              © 2024 JESS BOX. Todos los derechos reservados.
+              © 2024 THE BOX CLUB. Todos los derechos reservados.
             </p>
             <div className="mt-4 md:mt-0">
               <p className="text-sm" style={{ color: '#CFCFCF' }}>

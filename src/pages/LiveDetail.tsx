@@ -4,13 +4,14 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock, User, CheckCircle2, AlertCircle, Minus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { TeamSelector } from "@/components/TeamSelector";
 
 // Mock data for the live event
 const getLiveData = (id: string) => {
   const mockLives = {
     "1": {
       id: "1",
-      title: "JESS BOX Live – Productos Artesanales",
+      title: "THE BOX CLUB Live – Productos Artesanales",
       date: "2024-01-24",
       time: "19:00",
       endTime: "22:00",
@@ -21,7 +22,7 @@ const getLiveData = (id: string) => {
     },
     "2": {
       id: "2", 
-      title: "JESS BOX Live – Moda y Accesorios",
+      title: "THE BOX CLUB Live – Moda y Accesorios",
       date: "2024-02-01",
       time: "19:00",
       endTime: "22:00", 
@@ -32,7 +33,7 @@ const getLiveData = (id: string) => {
     },
     "3": {
       id: "3",
-      title: "JESS BOX Live – Tecnología y Gadgets", 
+      title: "THE BOX CLUB Live – Tecnología y Gadgets", 
       date: "2024-02-08",
       time: "19:00",
       endTime: "22:00",
@@ -45,6 +46,13 @@ const getLiveData = (id: string) => {
   
   return mockLives[id as keyof typeof mockLives];
 };
+
+// Team selection types
+type TeamCore = 'seller' | 'coach';
+interface TeamSelection {
+  team: TeamCore;
+  delivery: boolean;
+}
 
 // Stable data types
 type SlotStatus = 'available' | 'occupied' | 'closed';
@@ -127,6 +135,7 @@ export default function LiveDetail() {
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [slots, setSlots] = useState<Slot[]>([]);
+  const [teamSelection, setTeamSelection] = useState<TeamSelection>({ team: 'seller', delivery: false });
   const init = useRef(false);
   
   const liveData = getLiveData(id!);
@@ -161,7 +170,7 @@ export default function LiveDetail() {
     );
   }
 
-  const canReserve = Boolean(selectedSlot && acceptedTerms && liveData.status !== 'full');
+  const canReserve = Boolean(selectedSlot && acceptedTerms && teamSelection.team && liveData.status !== 'full');
 
   const handleReservation = () => {
     if (canReserve) {
@@ -309,6 +318,16 @@ export default function LiveDetail() {
                 </Button>
               </div>
             )}
+
+            {/* Team Selection */}
+            {liveData.status !== 'full' && selectedSlot && (
+              <div className="bg-ink-black rounded-xl shadow-sm border border-neutral-700 p-6 mt-6">
+                <TeamSelector 
+                  value={teamSelection} 
+                  onChange={setTeamSelection} 
+                />
+              </div>
+            )}
           </div>
 
           {/* Sidebar */}
@@ -332,6 +351,17 @@ export default function LiveDetail() {
                         slots.find(s => s.id === selectedSlot)?.endTime
                       : 'No seleccionado'
                     }
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-soft-graphite">Equipo:</span>
+                  <span className="text-ink-black font-medium">
+                    {selectedSlot ? (
+                      <>
+                        {teamSelection.team === 'seller' ? 'Seller' : 'Coach'}
+                        {teamSelection.delivery && ' + Delivery'}
+                      </>
+                    ) : 'Selecciona turno'}
                   </span>
                 </div>
                 <div className="flex justify-between">

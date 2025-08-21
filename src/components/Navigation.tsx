@@ -16,9 +16,9 @@ export const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-brushed-gold rounded-sm flex items-center justify-center jess-glow">
-              <span className="text-ink-black font-bold text-sm">JB</span>
+              <span className="text-ink-black font-bold text-sm">BC</span>
             </div>
-            <span className="text-xl font-bold tracking-wide uppercase">JESS BOX</span>
+            <span className="text-xl font-bold tracking-wide uppercase">THE BOX CLUB</span>
           </Link>
 
           {/* Desktop Navigation */}
