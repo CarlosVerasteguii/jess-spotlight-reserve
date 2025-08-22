@@ -10,8 +10,8 @@ const upcomingLives = [
     date: "2024-01-24",
     time: "19:00",
     endTime: "22:00",
-    availableSlots: 8,
-    totalSlots: 12,
+    availableSlots: 7,
+    totalSlots: 9,
     status: "available" as const
   },
   {
@@ -21,7 +21,7 @@ const upcomingLives = [
     time: "19:00",
     endTime: "22:00", 
     availableSlots: 2,
-    totalSlots: 12,
+    totalSlots: 9,
     status: "few-left" as const
   },
   {
@@ -31,7 +31,7 @@ const upcomingLives = [
     time: "19:00",
     endTime: "22:00",
     availableSlots: 0,
-    totalSlots: 12,
+    totalSlots: 9,
     status: "full" as const
   }
 ];
@@ -98,7 +98,7 @@ export const UpcomingShowsSection = () => {
             className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
             style={{ color: 'var(--white)', opacity: 0.8 }}
           >
-            Encuentra el slot perfecto para mostrar tus productos en vivo
+            Encuentra el turno perfecto para mostrar tus productos en vivo
           </p>
         </div>
 
@@ -119,7 +119,7 @@ export const UpcomingShowsSection = () => {
                     color: 'var(--white)'
                   }}
                 >
-                  Slots {live.availableSlots}/{live.totalSlots}
+                  Cupos {live.availableSlots}/{live.totalSlots}
                 </div>
               </div>
 
@@ -157,7 +157,7 @@ export const UpcomingShowsSection = () => {
                     style={{ color: 'var(--gold)' }} 
                   />
                   <span className="text-sm">
-                    Slot 18' + buffer 2' · 1 vendedor por slot
+                    Turno 18' + buffer 2' · 1 vendedor por turno
                   </span>
                 </div>
                 <div 

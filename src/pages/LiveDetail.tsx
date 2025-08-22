@@ -15,8 +15,8 @@ const getLiveData = (id: string) => {
       date: "2024-01-24",
       time: "19:00",
       endTime: "22:00",
-      availableSlots: 8,
-      totalSlots: 12,
+      availableSlots: 7,
+      totalSlots: 9,
       status: "available" as const,
       description: "Especial dedicado a productos artesanales y hechos a mano"
     },
@@ -27,7 +27,7 @@ const getLiveData = (id: string) => {
       time: "19:00",
       endTime: "22:00", 
       availableSlots: 2,
-      totalSlots: 12,
+      totalSlots: 9,
       status: "few-left" as const,
       description: "Showcase de moda, complementos y estilo personal"
     },
@@ -38,7 +38,7 @@ const getLiveData = (id: string) => {
       time: "19:00",
       endTime: "22:00",
       availableSlots: 0,
-      totalSlots: 12,
+      totalSlots: 9,
       status: "full" as const,
       description: "Lo último en tecnología y gadgets innovadores"
     }
@@ -229,7 +229,7 @@ export default function LiveDetail() {
 
               <div className="bg-pearl-white rounded-lg p-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-soft-graphite">Turnos disponibles</span>
+                  <span className="text-sm font-medium text-soft-graphite">Cupos disponibles</span>
                   <span className="text-sm font-bold text-brushed-gold">
                     {liveData.availableSlots}/{liveData.totalSlots}
                   </span>
