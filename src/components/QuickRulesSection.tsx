@@ -7,7 +7,7 @@ const rules = [
   },
   {
     icon: User,
-    text: "1 vendedor por slot"
+    text: "1 vendedor por turno"
   },
   {
     icon: Calendar,

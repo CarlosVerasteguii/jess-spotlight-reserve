@@ -27,7 +27,7 @@ const Index = () => {
                 </div>
                 <div className="text-sm">
                   <div className="text-brushed-gold mb-1">👤</div>
-                  1 vendedor por slot
+                  1 vendedor por turno
                 </div>
                 <div className="text-sm">
                   <div className="text-brushed-gold mb-1">⏰</div>

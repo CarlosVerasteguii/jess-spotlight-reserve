@@ -4,7 +4,7 @@ const steps = [
   {
     icon: Calendar,
     title: "Elige tu horario",
-    description: "Consulta la agenda y selecciona un slot disponible.",
+    description: "Consulta la agenda y selecciona un turno disponible.",
     step: "01"
   },
   {
