@@ -37,7 +37,7 @@ export const TestimonialsSection = () => {
             className="jess-h2 font-bold mb-6"
             style={{ color: 'var(--black)' }}
           >
-            Lo que dicen nuestros emprendedores
+            Lo que dicen nuestros emprendedores y socios
           </h2>
           <p 
             className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
