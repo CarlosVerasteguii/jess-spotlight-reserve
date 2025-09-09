@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Clock, User, CheckCircle2, AlertCircle, Minus, Info, ExternalLink } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, User, CheckCircle2, AlertCircle, Minus, Info, ExternalLink, Play } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { TeamSelector } from "@/components/TeamSelector";
@@ -10,6 +10,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
+import { VideoModal } from "@/components/VideoModal";
 
 // Mock data for the live event
 const getLiveData = (id: string) => {
@@ -424,6 +425,20 @@ export default function LiveDetail() {
                   <Button variant="outline" onClick={handleWaitingList}>
                     Unirme a lista de espera
                   </Button>
+                </div>
+              )}
+
+              {/* How it works link */}
+              {liveData.status !== 'full' && (
+                <div className="text-center mb-6">
+                  <VideoModal
+                    trigger={
+                      <button className="inline-flex items-center gap-2 text-brushed-gold hover:text-brushed-gold/80 transition-colors font-medium text-sm">
+                        <Play className="w-4 h-4" />
+                        ¿Cómo funciona?
+                      </button>
+                    }
+                  />
                 </div>
               )}
 

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-image.jpg";
+import { VideoModal } from "@/components/VideoModal";
 
 export const HeroSection = () => {
   return (
@@ -50,12 +51,14 @@ export const HeroSection = () => {
               </Link>
             </Button>
             
-            <Button variant="elegant" size="xl" asChild>
-              <Link to="/como-funciona">
-                <Play className="w-5 h-5" />
-                Ver cómo funciona
-              </Link>
-            </Button>
+            <VideoModal
+              trigger={
+                <Button variant="elegant" size="xl">
+                  <Play className="w-5 h-5" />
+                  Ver cómo funciona
+                </Button>
+              }
+            />
           </div>
 
           {/* Trust Indicators */}
