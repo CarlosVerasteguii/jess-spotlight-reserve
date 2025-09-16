@@ -8,6 +8,7 @@ import LiveDetail from "./pages/LiveDetail";
 import Planes from "./pages/Planes";
 import Reglas from "./pages/Reglas";
 import Agenda from "./pages/Agenda";
+import Onboarding from "./pages/Onboarding";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/planes" element={<Planes />} />
           <Route path="/reglas" element={<Reglas />} />
           <Route path="/agenda" element={<Agenda />} />
+          <Route path="/onboarding" element={<Onboarding />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
